@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connecto - Eventos e Shows</title>
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Conn<span class="logo-accent">ecto</span></span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Início</a>
+                <a href="artists.html" class="nav-link">Artistas</a>
+                <a href="events.html" class="nav-link">Eventos</a>          
+                <a href="#contact" class="nav-link">Contato</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>  
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="floating-particles"></div>
+        </div> 
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <br>
+                <span class="title-line accent-text">Connecto</span>
+            </h1>
+            <p class="hero-subtitle">Crie eventos, divulgue e venda ingressos com facilidade</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">
+                    <span>Mais Eventos</span>
+                </button>
+                <button class="btn btn-secondary">
+                    <span>Mais Artistas</span>
+                </button>
+                <button class="btn btn-secondary">
+                    <span>Login</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos <span class="accent-text">Serviços</span></h2>
+                <p class="section-subtitle">Soluções revolucionárias para eventos da era digital</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="service-title">Produção de Eventos</h3>
+                    <p class="service-description">Experiências imersivas com tecnologia de ponta</p>
+                    <div class="service-features">
+                        <span class="feature-tag">Holografia</span>
+                        <span class="feature-tag">AR</span>
+                        <span class="feature-tag">Iluminação</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 class="service-title">Contratação de Artistas</h3>
+                    <p class="service-description">Rede global de artistas premium</p>
+                    <div class="service-features">
+                        <span class="feature-tag">Talentos A-List</span>
+                        <span class="feature-tag">Shows Virtuais</span>
+                        <span class="feature-tag">Personalizado</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="service-title">Integração Tech</h3>
+                    <p class="service-description">Gestão com IA e experiências digitais</p>
+                    <div class="service-features">
+                        <span class="feature-tag">IA</span>
+                        <span class="feature-tag">Streaming</span>
+                        <span class="feature-tag">Apps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Entre em <span class="accent-text">Contato</span></h2>
+                <p class="section-subtitle">Pronto para criar algo extraordinário?</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Telefone</h3>
+                            <p>+55 31 9 8449-3467</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>hello@connecto.com</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Nome Completo</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <label for="message">Mensagem</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span>Enviar</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">Con<span class="accent-text">necto</span></div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Carregando...</p>
+        </div>
+    </div>
+
+    <script src="../public/js/main.js"></script>
+</body>
+</html>

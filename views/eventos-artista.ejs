@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos Disponíveis - Connecto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/artists-page.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/" class="logo-text">Con<span class="logo-accent">necto</span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/" class="nav-link">Início</a>
+                <a href="/artistas" class="nav-link">Artistas</a>
+                <a href="/eventos" class="nav-link">Eventos</a>
+                <a href="/eventos-artista" class="nav-link active">Oportunidades</a>
+                <a href="/#contact" class="nav-link">Contato</a>
+                <a href="#" class="nav-link" id="perfil-link" style="display: none;">Meu Perfil</a>
+                <a href="/login" class="nav-link" id="login-link">Login</a>
+                <a href="/logout" class="nav-link" id="logout-btn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Events Hero Section -->
+    <section class="artists-hero">
+        <div class="hero-background">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">Oportunidades</span>
+                    <span class="title-line accent-text">de Shows</span>
+                </h1>
+                <p class="hero-subtitle">Encontre eventos procurando por artistas como você</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Grid -->
+    <section class="artists-grid-section">
+        <div class="container">
+            <div class="artists-grid">
+                <% if (eventos && eventos.length > 0) { %>
+                    <% eventos.forEach(evento => { %>
+                        <div class="artist-card detailed">
+                            <div class="artist-image">
+                                <div class="image-placeholder corporate-bg">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="artist-badge available">Aberto</div>
+                            </div>
+                            <div class="artist-content">
+                                <div class="artist-header">
+                                    <h3 class="artist-name"><%= evento.nome || evento.descricao %></h3>
+                                    <div class="artist-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.8</span>
+                                    </div>
+                                </div>
+                                <p class="artist-genre">Organizado por <%= evento.organizador_nome %></p>
+                                <div class="artist-stats">
+                                    <span><i class="fas fa-calendar"></i> <%= new Date(evento.data).toLocaleDateString('pt-BR') %></span>
+                                    <span><i class="fas fa-map-marker-alt"></i> <%= evento.local %></span>
+                                    <span><i class="fas fa-users"></i> Procurando artistas</span>
+                                </div>
+                                <div class="artist-tags">
+                                    <span class="tag">Oportunidade</span>
+                                    <span class="tag">Evento</span>
+                                </div>
+                                <div class="artist-price">
+                                    <span class="price-label">Cachê estimado</span>
+                                    <span class="price-value">A combinar</span>
+                                </div>
+                                <div class="artist-actions">
+                                    <button class="btn btn-primary" onclick="candidatarEvento('<%= evento.id %>', '<%= evento.nome || evento.descricao %>')">
+                                        <i class="fas fa-paper-plane"></i> Candidatar-se
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="verDetalhesEvento('<%= evento.id %>')">
+                                        <i class="fas fa-info-circle"></i> Detalhes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-times"></i>
+                        <h4>Nenhum evento disponível</h4>
+                        <p>No momento não há eventos procurando por artistas</p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </section>
+
+    <!-- Candidatura Modal -->
+    <div id="candidatura-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Candidatar-se ao Evento</h2>
+                <span class="modal-close" onclick="closeCandidaturaModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="booking-form">
+                    <div class="artist-info">
+                        <h3 id="selected-event-name">Nome do Evento</h3>
+                        <p>Envie sua proposta para participar deste evento</p>
+                    </div>
+                    <form id="candidatura-form">
+                        <div class="form-group">
+                            <input type="text" id="proposta-preco" name="preco" placeholder="Seu cachê proposto (R$)" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="proposta-mensagem" name="mensagem" rows="4" placeholder="Mensagem para o organizador (fale sobre sua experiência, repertório, etc.)" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="url" id="portfolio-link" name="portfolio" placeholder="Link do seu portfólio/vídeos (opcional)">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Enviar Candidatura
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script>
+        let selectedEventId = null;
+
+        function candidatarEvento(eventoId, eventoNome) {
+            selectedEventId = eventoId;
+            document.getElementById('selected-event-name').textContent = eventoNome;
+            document.getElementById('candidatura-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCandidaturaModal() {
+            document.getElementById('candidatura-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.getElementById('candidatura-form').reset();
+        }
+
+        function verDetalhesEvento(eventoId) {
+            alert('Detalhes do evento em desenvolvimento!');
+        }
+
+        document.getElementById('candidatura-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitButton.disabled = true;
+            
+            try {
+                const formData = new FormData(e.target);
+                const mensagem = formData.get('mensagem');
+                
+                const response = await fetch('/api/candidaturas', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({
+                        eventoId: selectedEventId,
+                        mensagem: mensagem
+                    })
+                });
+                
+                if (response.ok) {
+                    alert('Candidatura enviada com sucesso! O organizador entrará em contato.');
+                    closeCandidaturaModal();
+                } else {
+                    const error = await response.json();
+                    alert(error.error || 'Erro ao enviar candidatura');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao enviar candidatura. Verifique sua conexão.');
+            } finally {
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            }
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('candidatura-modal');
+            if (event.target === modal) {
+                closeCandidaturaModal();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateNavigation();
+        });
+    </script>
+</body>
+</html>

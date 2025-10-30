@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Organizador - Connecto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/perfil.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/" class="logo-text">Con<span class="logo-accent">necto</span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/" class="nav-link">Início</a>
+                <a href="/artistas" class="nav-link">Artistas</a>
+                <a href="/eventos" class="nav-link">Eventos</a>
+                <a href="/#contact" class="nav-link">Contato</a>
+                <a href="/perfil-organizador" class="nav-link active">Meu Perfil</a>
+                <a href="/logout" class="nav-link" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Hero Section -->
+    <section class="profile-hero">
+        <div class="hero-background">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <div class="avatar-placeholder">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <button class="avatar-edit-btn" onclick="editAvatar()">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name"><%= user.nome %></h1>
+                    <p class="profile-type">Organizador de Eventos</p>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-number"><%= stats.eventos %></span>
+                            <span class="stat-label">Eventos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number"><%= stats.artistas %></span>
+                            <span class="stat-label">Artistas Confirmados</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number"><%= stats.avaliacoes %></span>
+                            <span class="stat-label">Avaliações</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Content -->
+    <section class="profile-content">
+        <div class="container">
+            <div class="profile-tabs">
+                <button class="tab-btn active" data-tab="info">Informações</button>
+                <button class="tab-btn" data-tab="eventos">Meus Eventos</button>
+                <button class="tab-btn" data-tab="candidaturas">Candidaturas</button>
+                <button class="tab-btn" data-tab="contratos">Contratos</button>
+                <button class="tab-btn" data-tab="settings">Configurações</button>
+            </div>
+
+            <!-- Informações Tab -->
+            <div class="tab-content active" id="info-tab">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Sobre a Empresa</h3>
+                        <form id="about-form">
+                            <div class="form-group">
+                                <textarea id="descricao" name="descricao" rows="4" placeholder="Conte sobre sua empresa, tipos de eventos que organiza..."><%= user.descricao || '' %></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="tipo-eventos" name="tipo-eventos" placeholder="Tipos de Eventos (Ex: Corporativo, Shows, Festivais)" value="<%= user.tipos_eventos || '' %>">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" id="capacidade" name="capacidade" placeholder="Capacidade Máxima" value="<%= user.capacidade_maxima || '' %>">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Salvar Informações
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Contato</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <input type="tel" id="telefone" name="telefone" placeholder="Telefone (11) 99999-9999" maxlength="15" value="<%= user.telefone || '' %>" oninput="this.value=this.value.replace(/\D/g,'').replace(/(\d{2})(\d{5})(\d{4})/,'($1) $2-$3').replace(/(\d{2})(\d{4})(\d{4})/,'($1) $2-$3')">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Email de contato" value="<%= user.email_contato || '' %>">
+                            </div>
+                            <div class="form-group">
+                                <input type="url" id="website" name="site" placeholder="Website https://seusite.com" value="<%= user.site || '' %>">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Salvar Contato
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Eventos Tab -->
+            <div class="tab-content" id="eventos-tab">
+                <div class="eventos-section">
+                    <div class="section-header">
+                        <h3>Meus Eventos</h3>
+                        <button class="btn btn-primary" onclick="openEventModal()">
+                            <i class="fas fa-plus"></i> Criar Show
+                        </button>
+                    </div>
+                    <div class="eventos-grid">
+                        <% if (eventos && eventos.length > 0) { %>
+                            <% eventos.forEach(evento => { %>
+                                <div class="evento-card">
+                                    <div class="evento-header">
+                                        <h4><%= evento.nome %></h4>
+                                        <div class="evento-status pending">Ativo</div>
+                                    </div>
+                                    <p class="evento-description"><%= evento.descricao %></p>
+                                    <div class="evento-details">
+                                        <span><i class="fas fa-calendar"></i> <%= evento.data %> às <%= evento.horario %></span>
+                                        <span><i class="fas fa-map-marker-alt"></i> <%= evento.lugar %></span>
+                                        <span><i class="fas fa-users"></i> <%= evento.capacidade_total %> pessoas</span>
+                                    </div>
+                                    <div class="evento-ingressos">
+                                        <small><i class="fas fa-ticket-alt"></i> Venda: <%= evento.ingressos_venda %> | Parceria: <%= evento.ingressos_parceria %> | Preço: R$ <%= evento.preco_ingresso %></small>
+                                    </div>
+                                    <div class="evento-actions">
+                                        <button class="btn btn-small btn-secondary" onclick="editEvent('<%= evento.id %>')">
+                                            <i class="fas fa-edit"></i> Editar
+                                        </button>
+                                        <button class="btn btn-small btn-primary" onclick="manageEvent('<%= evento.id %>')">
+                                            <i class="fas fa-cog"></i> Gerenciar
+                                        </button>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        <% } else { %>
+                            <div class="empty-state">
+                                <i class="fas fa-calendar-plus"></i>
+                                <h4>Nenhum show criado</h4>
+                                <p>Comece criando seu primeiro show</p>
+                                <button class="btn btn-primary" onclick="openEventModal()">Criar Show</button>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Candidaturas Tab -->
+            <div class="tab-content" id="candidaturas-tab">
+                <div class="candidaturas-section">
+                    <div class="section-header">
+                        <h3>Candidaturas Recebidas</h3>
+                        <div class="candidaturas-filter">
+                            <button class="filter-btn active" data-filter="all">Todas</button>
+                            <button class="filter-btn" data-filter="pendente">Pendentes</button>
+                            <button class="filter-btn" data-filter="aceita">Aceitas</button>
+                            <button class="filter-btn" data-filter="rejeitada">Rejeitadas</button>
+                        </div>
+                    </div>
+                    <div class="candidaturas-list">
+                        <% if (candidaturas && candidaturas.length > 0) { %>
+                            <% candidaturas.forEach(candidatura => { %>
+                                <div class="candidatura-card" data-status="<%= candidatura.status %>">
+                                    <div class="candidatura-header">
+                                        <div class="artista-info">
+                                            <div class="artista-avatar">
+                                                <i class="fas fa-user-music"></i>
+                                            </div>
+                                            <div>
+                                                <h4><%= candidatura.artista_nome %></h4>
+                                                <p class="evento-nome">Evento: <%= candidatura.evento_nome %></p>
+                                            </div>
+                                        </div>
+                                        <div class="candidatura-status <%= candidatura.status %>">
+                                            <%= candidatura.status.charAt(0).toUpperCase() + candidatura.status.slice(1) %>
+                                        </div>
+                                    </div>
+                                    <div class="candidatura-body">
+                                        <p class="artista-descricao"><%= candidatura.artista_descricao %></p>
+                                        <% if (candidatura.mensagem) { %>
+                                            <div class="candidatura-mensagem">
+                                                <strong>Mensagem do artista:</strong>
+                                                <p><%= candidatura.mensagem %></p>
+                                            </div>
+                                        <% } %>
+                                        <div class="candidatura-date">
+                                            <small><i class="fas fa-clock"></i> Candidatura enviada em <%= new Date(candidatura.created_at).toLocaleDateString('pt-BR') %></small>
+                                        </div>
+                                    </div>
+                                    <% if (candidatura.status === 'pendente') { %>
+                                        <div class="candidatura-actions">
+                                            <button class="btn btn-small btn-success" onclick="atualizarCandidatura('<%= candidatura.id %>', 'aceita')">
+                                                <i class="fas fa-check"></i> Aceitar
+                                            </button>
+                                            <button class="btn btn-small btn-danger" onclick="atualizarCandidatura('<%= candidatura.id %>', 'rejeitada')">
+                                                <i class="fas fa-times"></i> Rejeitar
+                                            </button>
+                                        </div>
+                                    <% } %>
+                                </div>
+                            <% }) %>
+                        <% } else { %>
+                            <div class="empty-state">
+                                <i class="fas fa-user-plus"></i>
+                                <h4>Nenhuma candidatura recebida</h4>
+                                <p>Quando artistas se candidatarem aos seus eventos, aparecerão aqui</p>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contratos Tab -->
+            <div class="tab-content" id="contratos-tab">
+                <div class="contratos-section">
+                    <div class="section-header">
+                        <h3>Contratos com Artistas</h3>
+                        <div class="contratos-filter">
+                            <button class="filter-btn active" data-filter="all">Todos</button>
+                            <button class="filter-btn" data-filter="pendente">Pendentes</button>
+                            <button class="filter-btn" data-filter="confirmado">Confirmados</button>
+                            <button class="filter-btn" data-filter="finalizado">Finalizados</button>
+                        </div>
+                    </div>
+                    <div class="contratos-list">
+                        <% if (contratos && contratos.length > 0) { %>
+                            <% contratos.forEach(contrato => { %>
+                                <div class="contrato-card" data-status="<%= contrato.status %>">
+                                    <div class="contrato-header">
+                                        <div class="contrato-info">
+                                            <h4><%= contrato.artista_nome %></h4>
+                                            <span class="contrato-status <%= contrato.status %>"><%= contrato.status.charAt(0).toUpperCase() + contrato.status.slice(1) %></span>
+                                        </div>
+                                        <div class="contrato-date">
+                                            <i class="fas fa-calendar"></i>
+                                            <%= new Date(contrato.data_evento).toLocaleDateString('pt-BR') %>
+                                        </div>
+                                    </div>
+                                    <div class="contrato-details">
+                                        <div class="detail-item">
+                                            <i class="fas fa-clock"></i>
+                                            <span><%= contrato.horario %></span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span><%= contrato.local %></span>
+                                        </div>
+                                        <% if (contrato.publico_esperado) { %>
+                                        <div class="detail-item">
+                                            <i class="fas fa-users"></i>
+                                            <span><%= contrato.publico_esperado %></span>
+                                        </div>
+                                        <% } %>
+                                        <% if (contrato.duracao) { %>
+                                        <div class="detail-item">
+                                            <i class="fas fa-hourglass-half"></i>
+                                            <span><%= contrato.duracao %>h</span>
+                                        </div>
+                                        <% } %>
+                                    </div>
+                                    <div class="contrato-contact">
+                                        <p><strong>Contato:</strong> <%= contrato.nome_contato %></p>
+                                        <p><strong>Email:</strong> <%= contrato.email_contato %></p>
+                                        <p><strong>Telefone:</strong> <%= contrato.telefone_contato %></p>
+                                    </div>
+                                    <% if (contrato.observacoes) { %>
+                                    <div class="contrato-notes">
+                                        <p><strong>Observações:</strong> <%= contrato.observacoes %></p>
+                                    </div>
+                                    <% } %>
+                                    <div class="contrato-actions">
+                                        <button class="btn btn-small btn-secondary" onclick="viewContrato('<%= contrato.id %>')">
+                                            <i class="fas fa-eye"></i> Ver Detalhes
+                                        </button>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        <% } else { %>
+                            <div class="empty-state">
+                                <i class="fas fa-handshake"></i>
+                                <h4>Nenhum contrato ativo</h4>
+                                <p>Quando você contratar artistas, os contratos aparecerão aqui</p>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configurações Tab -->
+            <div class="tab-content" id="settings-tab">
+                <div class="settings-section">
+                    <div class="settings-card">
+                        <h3>Configurações da Conta</h3>
+                        <form id="settings-form">
+                            <div class="form-group">
+                                <input type="text" id="nome" name="nome" value="<%= user.nome %>" placeholder="Nome da Empresa">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" value="<%= user.email %>" placeholder="Email" readonly>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="nova-senha" name="nova-senha" placeholder="Nova Senha (deixe em branco para manter a atual)">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirmar Nova Senha">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Salvar Configurações
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Diagnósticos</h3>
+                        <p>Ferramentas para testar a conexão e funcionalidades</p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <button class="btn btn-secondary" onclick="testConnection()">
+                                <i class="fas fa-wifi"></i> Testar Conexão
+                            </button>
+                            <button class="btn btn-secondary" onclick="testAuth()">
+                                <i class="fas fa-key"></i> Testar Autenticação
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-card danger">
+                        <h3>Zona de Perigo</h3>
+                        <p>Ações irreversíveis para sua conta</p>
+                        <button class="btn btn-danger" onclick="deleteAccount()">
+                            <i class="fas fa-trash"></i> Excluir Conta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Create Event Modal -->
+    <div id="create-event-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Criar Novo Show</h2>
+                <span class="modal-close" onclick="closeCreateEventModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="create-event-form">
+                    <div class="form-group">
+                        <label for="evento-nome">Nome do Show *</label>
+                        <input type="text" id="evento-nome" name="nome"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="evento-descricao">Descrição *</label>
+                        <textarea id="evento-descricao" name="descricao" rows="3"  required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="evento-local">Local *</label>
+                        <input type="text" id="evento-local" name="lugar"  required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="evento-data">Data *</label>
+                            <input type="date" id="evento-data" name="data" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="evento-horario">Horário *</label>
+                            <input type="time" id="evento-horario" name="horario" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="capacidade-total">Capacidade Total *</label>
+                            <input type="number" id="capacidade-total" name="capacidade_total" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ingressos-venda">Ingressos para Venda</label>
+                            <input type="number" id="ingressos-venda" name="ingressos_venda"  min="0">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="preco-ingresso">Preço do Ingresso (R$)</label>
+                            <input type="number" id="preco-ingresso" name="preco_ingresso" step="0.01"  min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="ingressos-parceria">Ingressos de Parceria</label>
+                            <input type="number" id="ingressos-parceria" name="ingressos_parceria"  min="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-plus"></i> Criar Show
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/perfil-organizador.js"></script>
+    
+    <script>
+    function openEventModal() {
+        console.log('Abrindo modal de evento');
+        const modal = document.getElementById('create-event-modal');
+        
+        if (modal) {
+            modal.style.display = 'block';
+            modal.style.zIndex = '99999';
+            document.body.style.overflow = 'hidden';
+            
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('evento-data');
+            if (dateInput) {
+                dateInput.value = today;
+            }
+        }
+    }
+    
+    function closeCreateEventModal() {
+        const modal = document.getElementById('create-event-modal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    async function atualizarCandidatura(candidaturaId, status) {
+        try {
+            const response = await fetch(`/api/candidaturas/${candidaturaId}/status`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ status })
+            });
+            
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Erro ao atualizar candidatura');
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+            alert('Erro ao atualizar candidatura');
+        }
+    }
+    </script>
+</body>
+</html>

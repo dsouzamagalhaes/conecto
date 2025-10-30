@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Artista - Connecto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">Conn<span class="logo-accent">ecto</span></span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Início</a>
+                <a href="/artistas" class="nav-link">Artistas</a>
+                <a href="/eventos" class="nav-link">Eventos</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="contact" style="padding-top: 120px;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cadastrar <span class="accent-text">Artista</span></h2>
+                <p class="section-subtitle">Junte-se à nossa plataforma e conecte-se com organizadores de eventos</p>
+            </div>
+            
+            <div class="contact-content" style="grid-template-columns: 1fr;">
+                <form class="contact-form" id="artist-form" style="max-width: 600px; margin: 0 auto;">
+                    <div class="form-group">
+                        <input type="text" id="nome" name="nome" required>
+                        <label for="nome">Nome Artístico</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="tel" id="telefone" name="telefone" required>
+                        <label for="telefone">Telefone</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select id="genero_id" name="genero_id" required>
+                            <option value="">Selecione o Gênero Musical</option>
+                            <option value="1">Rock</option>
+                            <option value="2">Pop</option>
+                            <option value="3">Eletrônica</option>
+                            <option value="4">Jazz</option>
+                            <option value="5">Sertanejo</option>
+                            <option value="6">MPB</option>
+                        </select>
+                        <label for="genero_id">Gênero Musical</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="number" id="preco" name="preco" min="0" step="0.01" required>
+                        <label for="preco">Preço por Show (R$)</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="biografia" name="biografia" rows="4" required></textarea>
+                        <label for="biografia">Biografia</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="url" id="portfolio" name="portfolio">
+                        <label for="portfolio">Link do Portfólio (opcional)</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span>Cadastrar Artista</span>
+                        <i class="fas fa-user-plus"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/main.js"></script>
+    <script>
+        document.getElementById('artist-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                const response = await fetch('/api/artistas', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    alert('Artista cadastrado com sucesso!');
+                    e.target.reset();
+                } else {
+                    alert('Erro ao cadastrar artista. Tente novamente.');
+                }
+            } catch (error) {
+                alert('Erro ao cadastrar artista. Tente novamente.');
+            }
+        });
+    </script>
+</body>
+</html>

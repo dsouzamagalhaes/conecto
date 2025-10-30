@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - Connecto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/artists-page.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/" class="logo-text">Con<span class="logo-accent">necto</span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/" class="nav-link">Início</a>
+                <a href="/artistas" class="nav-link">Artistas</a>
+                <a href="/eventos" class="nav-link active">Eventos</a>
+                <a href="/#contact" class="nav-link">Contato</a>
+                <a href="#" class="nav-link" id="perfil-link" style="display: none;">Meu Perfil</a>
+                <a href="/login" class="nav-link" id="login-link">Login</a>
+                <a href="/logout" class="nav-link" id="logout-btn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Events Hero Section -->
+    <section class="artists-hero">
+        <div class="hero-background">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">Nossos</span>
+                    <span class="title-line accent-text">Eventos</span>
+                </h1>
+                <p class="hero-subtitle">Descubra eventos incríveis acontecendo agora</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Grid -->
+    <section class="artists-grid-section">
+        <div class="container">
+            <div class="artists-grid">
+                <% if (eventos && eventos.length > 0) { %>
+                    <% eventos.forEach(evento => { %>
+                        <div class="artist-card detailed">
+                            <div class="artist-image">
+                                <div class="image-placeholder corporate-bg">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="artist-badge available">Ativo</div>
+                            </div>
+                            <div class="artist-content">
+                                <div class="artist-header">
+                                    <h3 class="artist-name"><%= evento.nome || evento.descricao %></h3>
+                                    <div class="artist-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.8</span>
+                                    </div>
+                                </div>
+                                <p class="artist-genre">Organizado por <%= evento.organizador_nome %></p>
+                                <div class="artist-stats">
+                                    <span><i class="fas fa-calendar"></i> <%= new Date(evento.data).toLocaleDateString('pt-BR') %></span>
+                                    <span><i class="fas fa-map-marker-alt"></i> <%= evento.lugar %></span>
+                                    <span><i class="fas fa-users"></i> <%= evento.capacidade_total || 'Capacidade livre' %></span>
+                                </div>
+                                <div class="artist-tags">
+                                    <span class="tag">Evento</span>
+                                    <span class="tag">Show</span>
+                                </div>
+                                <div class="artist-price">
+                                    <span class="price-label">Ingresso</span>
+                                    <span class="price-value">R$ <%= evento.preco_ingresso || '0,00' %></span>
+                                </div>
+                                <div class="artist-actions">
+                                    <button class="btn btn-primary" onclick="verDetalhesEvento('<%= evento.id %>')">
+                                        <i class="fas fa-info-circle"></i> Ver Detalhes
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="compartilharEvento('<%= evento.id %>')">
+                                        <i class="fas fa-share"></i> Compartilhar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-times"></i>
+                        <h4>Nenhum evento disponível</h4>
+                        <p>No momento não há eventos cadastrados</p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/main.js"></script>
+    <script>
+        function verDetalhesEvento(eventoId) {
+            alert('Detalhes do evento em desenvolvimento!');
+        }
+
+        function compartilharEvento(eventoId) {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Evento - Connecto',
+                    text: 'Confira este evento incrível!',
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link copiado para a área de transferência!');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateNavigation();
+        });
+    </script>
+</body>
+</html>

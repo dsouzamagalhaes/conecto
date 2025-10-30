@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artistas - Connecto</title>
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="../public/css/artists.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-text">Con<span class="logo-accent">necto</span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Início</a>
+                <a href="artists.html" class="nav-link active">Artistas</a>
+                <a href="events.html" class="nav-link">Eventos</a>
+                <a href="#contact" class="nav-link">Contato</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Artists Hero Section -->
+    <section class="artists-hero">
+        <div class="hero-background">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">Artistas</span>
+                    <span class="title-line accent-text">Excepcionais</span>
+                </h1>
+                <p class="hero-subtitle">Talentos de classe mundial para experiências inesquecíveis</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Filter -->
+    <section class="artists-filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <div class="filter-categories">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="electronic">Eletrônica</button>
+                    <button class="filter-btn" data-filter="rock">Rock</button>
+                    <button class="filter-btn" data-filter="pop">Pop</button>
+                    <button class="filter-btn" data-filter="jazz">Jazz</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="artist-search" placeholder="Buscar artistas...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Grid -->
+    <section class="artists-grid-section">
+        <div class="container">
+            <div class="artists-grid">
+                <div class="artist-card detailed" data-category="electronic">
+                    <div class="artist-image">
+                        <div class="image-placeholder electronic-bg">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div class="artist-badge featured">Destaque</div>
+                    </div>
+                    <div class="artist-content">
+                        <div class="artist-header">
+                            <h3 class="artist-name">Luna Synthwave</h3>
+                            <div class="artist-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                        <p class="artist-genre">Eletrônica / Synthwave</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-play-circle"></i> 2.5M reproduções</span>
+                            <span><i class="fas fa-users"></i> 850K fãs</span>
+                        </div>
+                        <div class="artist-tags">
+                            <span class="tag">Futurista</span>
+                            <span class="tag">Dance</span>
+                        </div>
+                        <div class="artist-price">
+                            <span class="price-label">A partir de</span>
+                            <span class="price-value">R$ 15.000</span>
+                        </div>
+                        <div class="artist-actions">
+                            <button class="btn btn-primary" onclick="openBookingModal('Luna Synthwave')">
+                                <i class="fas fa-calendar-plus"></i> Contratar
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-user"></i> Perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artist-card detailed" data-category="rock">
+                    <div class="artist-image">
+                        <div class="image-placeholder rock-bg">
+                            <i class="fas fa-guitar"></i>
+                        </div>
+                        <div class="artist-badge available">Disponível</div>
+                    </div>
+                    <div class="artist-content">
+                        <div class="artist-header">
+                            <h3 class="artist-name">Cyber Phoenix</h3>
+                            <div class="artist-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                        <p class="artist-genre">Rock / Cyberpunk</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-play-circle"></i> 1.8M reproduções</span>
+                            <span><i class="fas fa-users"></i> 650K fãs</span>
+                        </div>
+                        <div class="artist-tags">
+                            <span class="tag">Energia</span>
+                            <span class="tag">Rock</span>
+                        </div>
+                        <div class="artist-price">
+                            <span class="price-label">A partir de</span>
+                            <span class="price-value">R$ 18.000</span>
+                        </div>
+                        <div class="artist-actions">
+                            <button class="btn btn-primary" onclick="openBookingModal('Cyber Phoenix')">
+                                <i class="fas fa-calendar-plus"></i> Contratar
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-user"></i> Perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artist-card detailed" data-category="pop">
+                    <div class="artist-image">
+                        <div class="image-placeholder pop-bg">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <div class="artist-badge busy">Ocupado</div>
+                    </div>
+                    <div class="artist-content">
+                        <div class="artist-header">
+                            <h3 class="artist-name">Neon Dreams</h3>
+                            <div class="artist-rating">
+                                <i class="fas fa-star"></i>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                        <p class="artist-genre">Pop / Experimental</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-play-circle"></i> 3.2M reproduções</span>
+                            <span><i class="fas fa-users"></i> 1.1M fãs</span>
+                        </div>
+                        <div class="artist-tags">
+                            <span class="tag">Vocal</span>
+                            <span class="tag">Pop</span>
+                        </div>
+                        <div class="artist-price">
+                            <span class="price-label">A partir de</span>
+                            <span class="price-value">R$ 25.000</span>
+                        </div>
+                        <div class="artist-actions">
+                            <button class="btn btn-primary disabled" disabled>
+                                <i class="fas fa-clock"></i> Indisponível
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-user"></i> Perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Contratar Artista</h2>
+                <span class="modal-close" onclick="closeBookingModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="booking-form">
+                    <div class="artist-info">
+                        <h3 id="selected-artist-name">Nome do Artista</h3>
+                        <p id="selected-artist-genre">Gênero Musical</p>
+                    </div>
+                    <form id="booking-form">
+                        <div class="form-group">
+                            <input type="date" id="event-date" name="event-date" required>
+                            <label for="event-date">Data do Evento</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="event-location" name="event-location" placeholder="Local do evento" required>
+                            <label for="event-location">Local</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="contact-name" name="contact-name" required>
+                            <label for="contact-name">Seu Nome</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="contact-email" name="contact-email" required>
+                            <label for="contact-email">Email</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitação
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../public/js/main.js"></script>
+    <script src="../public/js/artists.js"></script>
+</body>
+</html>

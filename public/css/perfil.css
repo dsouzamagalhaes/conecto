@@ -1,0 +1,948 @@
+/* Profile Page Styles */
+
+/* Profile Hero Section */
+.profile-hero {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: #191f28;
+    padding-top: 80px;
+}
+
+.profile-hero .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(12, 80, 76, 0.15) 0%, transparent 70%),
+                radial-gradient(ellipse at 80% 20%, rgba(7, 121, 115, 0.15) 0%, transparent 70%);
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.profile-avatar {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #191f28;
+    border: 4px solid var(--primary-color);
+}
+
+.avatar-edit-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    color: #191f28;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.avatar-edit-btn:hover {
+    background: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-name {
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.profile-type {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-medium);
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.stat-number {
+    display: block;
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+}
+
+/* Profile Content */
+.profile-content {
+    padding: 4rem 0;
+    background: #191f28;
+}
+
+/* Profile Tabs */
+.profile-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    padding: 1rem 2rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Info Grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-large);
+    padding: 2rem;
+}
+
+.info-card h3 {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(90, 90, 90, 0.2);
+}
+
+/* Portfolio Section */
+.portfolio-section {
+    margin-bottom: 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h3 {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    color: var(--text-primary);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.portfolio-placeholder {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius-large);
+    padding: 3rem;
+    text-align: center;
+    transition: all var(--transition-medium);
+}
+
+.portfolio-placeholder:hover {
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-placeholder i {
+    font-size: 3rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.portfolio-placeholder p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* Events Section */
+.eventos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.evento-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-large);
+    padding: 1.5rem;
+    transition: all var(--transition-medium);
+}
+
+.evento-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.evento-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.evento-header h4 {
+    font-family: var(--font-primary);
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.evento-status {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.evento-status.pending {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+    border: 1px solid #ffc107;
+}
+
+.evento-status.confirmed {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.evento-status.completed {
+    background: rgba(108, 117, 125, 0.2);
+    color: #6c757d;
+    border: 1px solid #6c757d;
+}
+
+.evento-description {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.evento-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.evento-details span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.evento-actions {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+/* Shows and Contracts Sections */
+.shows-section,
+.contratos-section {
+    margin-bottom: 2rem;
+}
+
+.shows-filter,
+.contratos-filter {
+    display: flex;
+    gap: 1rem;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: rgba(90, 90, 90, 0.1);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-secondary);
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state h4 {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.empty-state p {
+    margin-bottom: 1.5rem;
+}
+
+/* Settings Section */
+.settings-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.settings-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-large);
+    padding: 2rem;
+}
+
+.settings-card.danger {
+    border-color: #dc3545;
+    background: rgba(220, 53, 69, 0.05);
+}
+
+.settings-card h3 {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.settings-card.danger h3 {
+    color: #dc3545;
+}
+
+.settings-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #c82333, #bd2130);
+    transform: translateY(-2px);
+}
+
+/* Candidaturas Section */
+.candidaturas-section {
+    margin-bottom: 2rem;
+}
+
+.candidaturas-filter {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.candidaturas-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.candidatura-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-large);
+    padding: 1.5rem;
+    transition: all var(--transition-medium);
+}
+
+.candidatura-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-color);
+}
+
+.candidatura-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.artista-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.artista-avatar,
+.evento-avatar {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #191f28;
+}
+
+.evento-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.candidatura-tipo {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0.2rem 0 0 0;
+}
+
+.artista-info h4 {
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.evento-nome {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0.2rem 0 0 0;
+}
+
+.candidatura-status {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.candidatura-status.pendente {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+    border: 1px solid #ffc107;
+}
+
+.candidatura-status.aceita {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.candidatura-status.rejeitada {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.candidatura-body {
+    margin-bottom: 1rem;
+}
+
+.artista-descricao {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.candidatura-mensagem {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin: 1rem 0;
+    border-left: 3px solid var(--primary-color);
+}
+
+.candidatura-mensagem strong {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.candidatura-mensagem p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.candidatura-date {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.candidatura-actions {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: flex-end;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    border: none;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #20c997, #17a2b8);
+    transform: translateY(-2px);
+}
+
+/* Modal Styles */
+.modal {
+    display: none !important;
+    position: fixed !important;
+    z-index: 99999 !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.modal[style*="block"] {
+    display: block !important;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.05);
+    margin: 5% auto;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-large);
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    position: relative;
+    backdrop-filter: blur(20px);
+}
+
+.modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+    font-family: var(--font-primary);
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.modal-close {
+    color: var(--text-secondary);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.modal-close:hover {
+    color: var(--text-primary);
+}
+
+
+
+.btn-full {
+    width: 100%;
+}
+
+.evento-ingressos {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--border-radius);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .profile-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-tabs {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .tab-btn {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .eventos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-name {
+        font-size: 2rem;
+    }
+    
+    .stat-item {
+        padding: 0.8rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .info-card {
+        padding: 1.5rem;
+    }
+    
+    .evento-actions {
+        flex-direction: column;
+    }
+}
+
+/* Contratos Cards */
+.contratos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contrato-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-large);
+    padding: 1.5rem;
+    transition: all var(--transition-medium);
+}
+
+.contrato-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-color);
+}
+
+.contrato-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.contrato-info h4 {
+    font-family: var(--font-primary);
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+}
+
+.contrato-status {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contrato-status.pendente {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+    border: 1px solid #ffc107;
+}
+
+.contrato-status.confirmado {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.contrato-status.finalizado {
+    background: rgba(108, 117, 125, 0.2);
+    color: #6c757d;
+    border: 1px solid #6c757d;
+}
+
+.contrato-date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.contrato-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.contrato-contact {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.contrato-contact p {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.contrato-notes {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--primary-color);
+}
+
+.contrato-notes p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.contrato-actions {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: flex-end;
+}
+
+/* Contract Details Modal */
+.contrato-details-full {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.detail-section {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary-color);
+}
+
+.detail-section h3 {
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.detail-value {
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.detail-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.contact-details p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .detail-row {
+        grid-template-columns: 1fr;
+    }
+}

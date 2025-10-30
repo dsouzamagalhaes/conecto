@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Artista - Connecto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/perfil.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/" class="logo-text">Con<span class="logo-accent">necto</span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/" class="nav-link">Início</a>
+                <a href="/artistas" class="nav-link">Artistas</a>
+                <a href="/eventos" class="nav-link">Eventos</a>
+                <a href="/#contact" class="nav-link">Contato</a>
+                <a href="/perfil-artista" class="nav-link active">Meu Perfil</a>
+                <a href="/logout" class="nav-link" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Hero Section -->
+    <section class="profile-hero">
+        <div class="hero-background">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <div class="avatar-placeholder">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <button class="avatar-edit-btn" onclick="editAvatar()">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name"><%= user.nome %></h1>
+                    <p class="profile-type">Artista</p>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">0</span>
+                            <span class="stat-label">Shows</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">0</span>
+                            <span class="stat-label">Avaliações</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">0</span>
+                            <span class="stat-label">Seguidores</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Content -->
+    <section class="profile-content">
+        <div class="container">
+            <div class="profile-tabs">
+                <button class="tab-btn active" data-tab="info">Informações</button>
+                <button class="tab-btn" data-tab="portfolio">Portfólio</button>
+                <button class="tab-btn" data-tab="candidaturas">Candidaturas</button>
+                <button class="tab-btn" data-tab="contratos">Contratos</button>
+                <button class="tab-btn" data-tab="shows">Meus Shows</button>
+                <button class="tab-btn" data-tab="settings">Configurações</button>
+            </div>
+
+            <!-- Informações Tab -->
+            <div class="tab-content active" id="info-tab">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Sobre Mim</h3>
+                        <form id="about-form">
+                            <div class="form-group">
+                                <textarea id="descricao" name="descricao" rows="4" placeholder="Conte sobre sua música, estilo e experiência..."><%= user.descricao || '' %></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="genero" name="genero" placeholder="Gênero Musical (Ex: Rock, Pop, Eletrônica)">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" id="preco" name="preco" placeholder="Preço Base (R$)">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Salvar Informações
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Contato</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <input type="tel" id="telefone" name="telefone" placeholder="Telefone (11) 99999-9999">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="instagram" name="instagram" placeholder="Instagram @seuinstagram">
+                            </div>
+                            <div class="form-group">
+                                <input type="url" id="youtube" name="youtube" placeholder="YouTube https://youtube.com/seucanal">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Salvar Contato
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfólio Tab -->
+            <div class="tab-content" id="portfolio-tab">
+                <div class="portfolio-section">
+                    <div class="section-header">
+                        <h3>Meu Portfólio</h3>
+                        <button class="btn btn-primary" onclick="addPortfolioItem()">
+                            <i class="fas fa-plus"></i> Adicionar Item
+                        </button>
+                    </div>
+                    <div class="portfolio-grid">
+                        <div class="portfolio-placeholder">
+                            <i class="fas fa-music"></i>
+                            <p>Adicione fotos, vídeos e áudios dos seus shows</p>
+                            <button class="btn btn-secondary" onclick="addPortfolioItem()">Começar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Candidaturas Tab -->
+            <div class="tab-content" id="candidaturas-tab">
+                <div class="candidaturas-section">
+                    <div class="section-header">
+                        <h3>Minhas Candidaturas</h3>
+                        <a href="/eventos-artista" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Buscar Eventos
+                        </a>
+                    </div>
+                    <div class="candidaturas-list" id="candidaturas-list">
+                        <% if (candidaturas && candidaturas.length > 0) { %>
+                            <% candidaturas.forEach(candidatura => { %>
+                                <div class="candidatura-card" data-status="<%= candidatura.status %>">
+                                    <div class="candidatura-header">
+                                        <div class="evento-info">
+                                            <div class="evento-avatar">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </div>
+                                            <div>
+                                                <h4><%= candidatura.evento_nome || candidatura.evento_descricao %></h4>
+                                                <p class="candidatura-tipo">Candidatura enviada</p>
+                                            </div>
+                                        </div>
+                                        <div class="candidatura-status <%= candidatura.status %>">
+                                            <%= candidatura.status.charAt(0).toUpperCase() + candidatura.status.slice(1) %>
+                                        </div>
+                                    </div>
+                                    <% if (candidatura.mensagem) { %>
+                                        <div class="candidatura-body">
+                                            <div class="candidatura-mensagem">
+                                                <strong>Sua mensagem:</strong>
+                                                <p><%= candidatura.mensagem %></p>
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                    <div class="candidatura-date">
+                                        <small><i class="fas fa-clock"></i> Enviada em <%= new Date(candidatura.created_at).toLocaleDateString('pt-BR') %></small>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        <% } else { %>
+                            <div class="empty-state" id="empty-candidaturas">
+                                <i class="fas fa-paper-plane"></i>
+                                <h4>Nenhuma candidatura enviada</h4>
+                                <p>Candidate-se a eventos para aparecerem aqui</p>
+                                <a href="/eventos-artista" class="btn btn-primary">Ver Oportunidades</a>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contratos Tab -->
+            <div class="tab-content" id="contratos-tab">
+                <div class="contratos-section">
+                    <div class="section-header">
+                        <h3>Contratos Recebidos</h3>
+                        <div class="contratos-filter">
+                            <button class="filter-btn active" data-filter="all">Todos</button>
+                            <button class="filter-btn" data-filter="pendente">Pendentes</button>
+                            <button class="filter-btn" data-filter="confirmado">Confirmados</button>
+                            <button class="filter-btn" data-filter="finalizado">Finalizados</button>
+                        </div>
+                    </div>
+                    <div class="contratos-list">
+                        <% if (contratos && contratos.length > 0) { %>
+                            <% contratos.forEach(contrato => { %>
+                                <div class="contrato-card" data-status="<%= contrato.status %>">
+                                    <div class="contrato-header">
+                                        <div class="organizador-info">
+                                            <div class="organizador-avatar">
+                                                <i class="fas fa-building"></i>
+                                            </div>
+                                            <div>
+                                                <h4><%= contrato.organizador_nome %></h4>
+                                                <p class="contrato-tipo">Proposta de Show</p>
+                                            </div>
+                                        </div>
+                                        <div class="contrato-status <%= contrato.status %>">
+                                            <%= contrato.status.charAt(0).toUpperCase() + contrato.status.slice(1) %>
+                                        </div>
+                                    </div>
+                                    <div class="contrato-details">
+                                        <div class="detail-item">
+                                            <i class="fas fa-calendar"></i>
+                                            <span><%= contrato.data_evento %> às <%= contrato.horario %></span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span><%= contrato.local %></span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-users"></i>
+                                            <span><%= contrato.publico_esperado %> pessoas</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <i class="fas fa-clock"></i>
+                                            <span><%= contrato.duracao %>h de duração</span>
+                                        </div>
+                                    </div>
+                                    <% if (contrato.observacoes) { %>
+                                        <div class="contrato-observacoes">
+                                            <strong>Observações:</strong>
+                                            <p><%= contrato.observacoes %></p>
+                                        </div>
+                                    <% } %>
+                                    <% if (contrato.status === 'pendente') { %>
+                                        <div class="contrato-actions">
+                                            <button class="btn btn-small btn-success" onclick="responderContrato('<%= contrato.id %>', 'confirmado')">
+                                                <i class="fas fa-check"></i> Aceitar
+                                            </button>
+                                            <button class="btn btn-small btn-danger" onclick="responderContrato('<%= contrato.id %>', 'cancelado')">
+                                                <i class="fas fa-times"></i> Rejeitar
+                                            </button>
+                                        </div>
+                                    <% } %>
+                                    <div class="contrato-date">
+                                        <small><i class="fas fa-clock"></i> Recebido em <%= new Date(contrato.created_at).toLocaleDateString('pt-BR') %></small>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        <% } else { %>
+                            <div class="empty-state">
+                                <i class="fas fa-handshake"></i>
+                                <h4>Nenhum contrato recebido</h4>
+                                <p>Quando organizadores enviarem propostas, aparecerão aqui</p>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shows Tab -->
+            <div class="tab-content" id="shows-tab">
+                <div class="shows-section">
+                    <div class="section-header">
+                        <h3>Meus Shows</h3>
+                        <div class="shows-filter">
+                            <button class="filter-btn active" data-filter="all">Todos</button>
+                            <button class="filter-btn" data-filter="upcoming">Próximos</button>
+                            <button class="filter-btn" data-filter="completed">Realizados</button>
+                        </div>
+                    </div>
+                    <div class="shows-list">
+                        <div class="empty-state">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h4>Nenhum show agendado</h4>
+                            <p>Quando você for contratado, seus shows aparecerão aqui</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configurações Tab -->
+            <div class="tab-content" id="settings-tab">
+                <div class="settings-section">
+                    <div class="settings-card">
+                        <h3>Configurações da Conta</h3>
+                        <form id="settings-form">
+                            <div class="form-group">
+                                <input type="text" id="nome" name="nome" value="<%= user.nome %>" placeholder="Nome">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" value="<%= user.email %>" placeholder="Email" readonly>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="nova-senha" name="nova-senha" placeholder="Nova Senha (deixe em branco para manter a atual)">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirmar Nova Senha">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Salvar Configurações
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="settings-card danger">
+                        <h3>Zona de Perigo</h3>
+                        <p>Ações irreversíveis para sua conta</p>
+                        <button class="btn btn-danger" onclick="deleteAccount()">
+                            <i class="fas fa-trash"></i> Excluir Conta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/perfil-artista.js"></script>
+    
+    <script>
+    async function responderContrato(contratoId, status) {
+        try {
+            const response = await fetch(`/api/contratacoes/${contratoId}/resposta`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ status })
+            });
+            
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Erro ao responder contrato');
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+            alert('Erro ao responder contrato');
+        }
+    }
+    
+    // Filtrar contratos por status
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.contratos-filter .filter-btn');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Filter contracts
+                const contratoCards = document.querySelectorAll('.contrato-card');
+                contratoCards.forEach(card => {
+                    const status = card.getAttribute('data-status');
+                    const shouldShow = filter === 'all' || status === filter;
+                    card.style.display = shouldShow ? 'block' : 'none';
+                });
+            });
+        });
+    });
+    </script>
+</body>
+</html>

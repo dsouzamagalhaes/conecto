@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artistas - Connecto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/artists-page.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/" class="logo-text">Con<span class="logo-accent">necto</span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/" class="nav-link">Início</a>
+                <a href="/artistas" class="nav-link active">Artistas</a>
+                <a href="/eventos" class="nav-link">Eventos</a>
+                <a href="/#contact" class="nav-link">Contato</a>
+                <a href="#" class="nav-link" id="perfil-link" style="display: none;">Meu Perfil</a>
+                <a href="/login" class="nav-link" id="login-link">Login</a>
+                <a href="/logout" class="nav-link" id="logout-btn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Artists Hero Section -->
+    <section class="artists-hero">
+        <div class="hero-background">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">Artistas</span>
+                    <span class="title-line accent-text">Excepcionais</span>
+                </h1>
+                <p class="hero-subtitle">Talentos de classe mundial para experiências inesquecíveis</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Artistas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Gêneros</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Shows</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Filter -->
+    <section class="artists-filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <div class="filter-categories">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="electronic">Eletrônica</button>
+                    <button class="filter-btn" data-filter="rock">Rock</button>
+                    <button class="filter-btn" data-filter="pop">Pop</button>
+                    <button class="filter-btn" data-filter="jazz">Jazz</button>
+                    <button class="filter-btn" data-filter="classical">Clássica</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="artist-search" placeholder="Buscar artistas...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Grid -->
+    <section class="artists-grid-section">
+        <div class="container">
+            <div class="artists-grid">
+                <% if (artistas && artistas.length > 0) { %>
+                    <% artistas.forEach(artista => { %>
+                        <div class="artist-card detailed" data-category="electronic">
+                            <div class="artist-image">
+                                <div class="image-placeholder electronic-bg">
+                                    <i class="fas fa-music"></i>
+                                </div>
+                                <div class="artist-badge available">Disponível</div>
+                            </div>
+                            <div class="artist-content">
+                                <div class="artist-header">
+                                    <h3 class="artist-name"><%= artista.nome %></h3>
+                                    <div class="artist-rating">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.9</span>
+                                    </div>
+                                </div>
+                                <p class="artist-genre"><%= artista.descricao || 'Artista talentoso' %></p>
+                                <div class="artist-stats">
+                                    <span><i class="fas fa-play-circle"></i> 2.5M reproduções</span>
+                                    <span><i class="fas fa-users"></i> 850K fãs</span>
+                                    <span><i class="fas fa-calendar"></i> 50+ shows</span>
+                                </div>
+                                <div class="artist-tags">
+                                    <span class="tag">Talentoso</span>
+                                    <span class="tag">Popular</span>
+                                </div>
+                                <div class="artist-price">
+                                    <span class="price-label">A partir de</span>
+                                    <span class="price-value">R$ 15.000</span>
+                                </div>
+                                <div class="artist-actions">
+                                    <button class="btn btn-primary" onclick="openBookingModal('<%= artista.nome %>', '<%= artista.id || artista.conta_id %>')">
+                                        <i class="fas fa-calendar-plus"></i> Contratar
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="viewArtistProfile('<%= artista.id || artista.conta_id %>')">
+                                        <i class="fas fa-user"></i> Perfil
+                                    </button>
+                                    <button class="btn btn-outline favorite-btn" onclick="toggleFavorite('<%= artista.id || artista.conta_id %>', this)">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <!-- Default artists when no data -->
+                    <div class="artist-card detailed" data-category="electronic">
+                        <div class="artist-image">
+                            <div class="image-placeholder electronic-bg">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <div class="artist-badge featured">Destaque</div>
+                        </div>
+                        <div class="artist-content">
+                            <div class="artist-header">
+                                <h3 class="artist-name">Luna Synthwave</h3>
+                                <div class="artist-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.9</span>
+                                </div>
+                            </div>
+                            <p class="artist-genre">Eletrônica / Synthwave</p>
+                            <div class="artist-stats">
+                                <span><i class="fas fa-play-circle"></i> 2.5M reproduções</span>
+                                <span><i class="fas fa-users"></i> 850K fãs</span>
+                                <span><i class="fas fa-calendar"></i> 50+ shows</span>
+                            </div>
+                            <div class="artist-tags">
+                                <span class="tag">Futurista</span>
+                                <span class="tag">Dance</span>
+                                <span class="tag">Synthpop</span>
+                            </div>
+                            <div class="artist-price">
+                                <span class="price-label">A partir de</span>
+                                <span class="price-value">R$ 15.000</span>
+                            </div>
+                            <div class="artist-actions">
+                                <button class="btn btn-primary" onclick="openBookingModal('Luna Synthwave', 'luna-synthwave')">
+                                    <i class="fas fa-calendar-plus"></i> Contratar
+                                </button>
+                                <button class="btn btn-secondary" onclick="viewArtistProfile('luna-synthwave')">
+                                    <i class="fas fa-user"></i> Perfil
+                                </button>
+                                <button class="btn btn-outline favorite-btn" onclick="toggleFavorite('luna-synthwave', this)">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Contratar Artista</h2>
+                <span class="modal-close" onclick="closeBookingModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="booking-form">
+                    <div class="artist-info">
+                        <h3 id="selected-artist-name">Nome do Artista</h3>
+                        <p id="selected-artist-genre">Gênero Musical</p>
+                    </div>
+                    <form id="booking-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="date" id="event-date" name="event-date" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="time" id="event-time" name="event-time" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="event-location" name="event-location" placeholder="Local do Evento" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <select id="event-duration" name="event-duration" required>
+                                    <option value="">Selecione a duração</option>
+                                    <option value="1">1 hora</option>
+                                    <option value="2">2 horas</option>
+                                    <option value="3">3 horas</option>
+                                    <option value="4">4 horas</option>
+                                    <option value="custom">Personalizado</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select id="expected-audience" name="expected-audience" required>
+                                    <option value="">Público esperado</option>
+                                    <option value="50-100">50-100 pessoas</option>
+                                    <option value="100-500">100-500 pessoas</option>
+                                    <option value="500-1000">500-1000 pessoas</option>
+                                    <option value="1000+">1000+ pessoas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="contact-name" name="contact-name" placeholder="Seu Nome" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="email" id="contact-email" name="contact-email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="contact-phone" name="contact-phone" placeholder="Telefone" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="special-requirements" name="special-requirements" rows="3" placeholder="Observações sobre o evento"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitação
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/artists-page.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateNavigation();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/" class="logo-text">Con<span class="logo-accent">necto</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="error-section" style="padding: 8rem 0; text-align: center; background: #191f28; min-height: 80vh; display: flex; align-items: center;">
+        <div class="container">
+            <div class="error-content">
+                <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: var(--accent-color); margin-bottom: 2rem;"></i>
+                <h1 style="font-family: var(--font-primary); font-size: 3rem; color: var(--text-primary); margin-bottom: 1rem;">Oops!</h1>
+                <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem;"><%= message %></p>
+                <a href="/artistas" class="btn btn-primary">
+                    <i class="fas fa-arrow-left"></i> Voltar aos Artistas
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

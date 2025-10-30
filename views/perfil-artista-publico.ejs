@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= artista.nome %> - Connecto</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/artists-page.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/" class="logo-text">Con<span class="logo-accent">necto</span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/" class="nav-link">Início</a>
+                <a href="/artistas" class="nav-link">Artistas</a>
+                <a href="/eventos" class="nav-link">Eventos</a>
+                <a href="/#contact" class="nav-link">Contato</a>
+                <a href="#" class="nav-link" id="perfil-link" style="display: none;">Meu Perfil</a>
+                <a href="/login" class="nav-link" id="login-link">Login</a>
+                <a href="/logout" class="nav-link" id="logout-btn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Artist Profile Hero -->
+    <section class="artist-profile-hero">
+        <div class="hero-background">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="container">
+            <div class="profile-header">
+                <div class="artist-avatar-large">
+                    <div class="avatar-placeholder electronic-bg">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="artist-status online"></div>
+                </div>
+                <div class="artist-main-info">
+                    <h1 class="artist-title"><%= artista.nome %></h1>
+                    <p class="artist-subtitle"><%= artista.descricao || 'Artista talentoso' %></p>
+                    <div class="artist-rating-large">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-text">4.9 (127 avaliações)</span>
+                    </div>
+                    <div class="artist-actions-hero">
+                        <button class="btn btn-primary" onclick="openBookingModal('<%= artista.nome %>')">
+                            <i class="fas fa-calendar-plus"></i> Contratar Agora
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="far fa-heart"></i> Favoritar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artist Details -->
+    <section class="artist-details">
+        <div class="container">
+            <div class="details-grid">
+                <div class="details-main">
+                    <div class="section-card">
+                        <h3><i class="fas fa-user"></i> Sobre o Artista</h3>
+                        <p><%= artista.descricao || 'Artista experiente com vasta trajetória musical. Especializado em performances ao vivo que conectam com o público de forma única e memorável.' %></p>
+                    </div>
+
+                    <div class="section-card">
+                        <h3><i class="fas fa-music"></i> Repertório</h3>
+                        <div class="repertoire-list">
+                            <div class="repertoire-item">
+                                <i class="fas fa-play-circle"></i>
+                                <span>Hits Originais</span>
+                            </div>
+                            <div class="repertoire-item">
+                                <i class="fas fa-play-circle"></i>
+                                <span>Covers Populares</span>
+                            </div>
+                            <div class="repertoire-item">
+                                <i class="fas fa-play-circle"></i>
+                                <span>Música Instrumental</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3><i class="fas fa-calendar-alt"></i> Próximos Shows</h3>
+                        <div class="upcoming-shows">
+                            <div class="show-item">
+                                <div class="show-date">
+                                    <span class="day">15</span>
+                                    <span class="month">MAR</span>
+                                </div>
+                                <div class="show-info">
+                                    <h4>Festival de Música Eletrônica</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> São Paulo, SP</p>
+                                </div>
+                            </div>
+                            <div class="show-item">
+                                <div class="show-date">
+                                    <span class="day">22</span>
+                                    <span class="month">MAR</span>
+                                </div>
+                                <div class="show-info">
+                                    <h4>Casa de Shows Premium</h4>
+                                    <p><i class="fas fa-map-marker-alt"></i> Rio de Janeiro, RJ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details-sidebar">
+                    <div class="section-card">
+                        <h3><i class="fas fa-chart-line"></i> Estatísticas</h3>
+                        <div class="stats-list">
+                            <div class="stat-row">
+                                <span class="stat-label">Shows Realizados</span>
+                                <span class="stat-value">150+</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Fãs</span>
+                                <span class="stat-value">25K</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Reproduções</span>
+                                <span class="stat-value">2.5M</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Avaliação</span>
+                                <span class="stat-value">4.9/5</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3><i class="fas fa-dollar-sign"></i> Preços</h3>
+                        <div class="pricing-info">
+                            <div class="price-item">
+                                <span class="price-label">Show Básico (1h)</span>
+                                <span class="price-value">R$ 15.000</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">Show Completo (3h)</span>
+                                <span class="price-value">R$ 35.000</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">Festival (4h+)</span>
+                                <span class="price-value">R$ 50.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h3><i class="fas fa-tags"></i> Especialidades</h3>
+                        <div class="tags-list">
+                            <span class="tag">Eletrônica</span>
+                            <span class="tag">Synthwave</span>
+                            <span class="tag">Dance</span>
+                            <span class="tag">Futurista</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Contratar <%= artista.nome %></h2>
+                <span class="modal-close" onclick="closeBookingModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="booking-form">
+                    <div class="artist-info">
+                        <h3><%= artista.nome %></h3>
+                        <p><%= artista.descricao || 'Artista talentoso' %></p>
+                    </div>
+                    <form id="booking-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="date" id="event-date" name="event-date" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="time" id="event-time" name="event-time" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="event-location" name="event-location" placeholder="Local do Evento" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <select id="event-duration" name="event-duration" required>
+                                    <option value="">Selecione a duração</option>
+                                    <option value="1">1 hora</option>
+                                    <option value="2">2 horas</option>
+                                    <option value="3">3 horas</option>
+                                    <option value="4">4 horas</option>
+                                    <option value="custom">Personalizado</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select id="expected-audience" name="expected-audience" required>
+                                    <option value="">Público esperado</option>
+                                    <option value="50-100">50-100 pessoas</option>
+                                    <option value="100-500">100-500 pessoas</option>
+                                    <option value="500-1000">500-1000 pessoas</option>
+                                    <option value="1000+">1000+ pessoas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="contact-name" name="contact-name" placeholder="Seu Nome" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="email" id="contact-email" name="contact-email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="contact-phone" name="contact-phone" placeholder="Telefone" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="special-requirements" name="special-requirements" rows="3" placeholder="Observações sobre o evento"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitação
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/artist-profile.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateNavigation();
+        });
+    </script>
+</body>
+</html>

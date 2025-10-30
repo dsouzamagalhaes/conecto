@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connecto - Eventos e Shows</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Conn<span class="logo-accent">ecto</span></span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Início</a>
+                <a href="/artistas" class="nav-link">Artistas</a>
+                <a href="/eventos" class="nav-link">Eventos</a>
+                <a href="#contact" class="nav-link">Contato</a>
+                <a href="#" class="nav-link" id="perfil-link" style="display: none;">Meu Perfil</a>
+                <a href="/login" class="nav-link" id="login-link">Login</a>
+                <a href="/logout" class="nav-link" id="logout-btn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line accent-text">Connecto</span>
+            </h1>
+            <p class="hero-subtitle">Crie eventos, divulgue e venda ingressos com facilidade</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="location.href='/eventos'">
+                    <span>Mais Eventos</span>
+                </button>
+                <button class="btn btn-secondary" onclick="location.href='/artistas'">
+                    <span>Mais Artistas</span>
+                </button>
+                <button class="btn btn-secondary" onclick="location.href='/login'">
+                    <span>Login</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Eventos em <span class="accent-text">Destaque</span></h2>
+                <p class="section-subtitle">Mostrando nossas produções mais espetaculares</p>
+            </div>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">Todos os Eventos</button>
+                <button class="filter-btn" data-filter="corporate">Corporativo</button>
+                <button class="filter-btn" data-filter="concert">Concertos</button>
+                <button class="filter-btn" data-filter="festival">Festivais</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="corporate">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder corporate-bg">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Tech Summit 2025</h3>
+                        <p class="portfolio-description">Evento corporativo revolucionário com apresentações holográficas</p>
+                        <div class="portfolio-stats">
+                            <span><i class="fas fa-users"></i> 2,500 Participantes</span>
+                            <span><i class="fas fa-star"></i> 4.9 Avaliação</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="concert">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder concert-bg">
+                            <i class="fas fa-music"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Neon Nights Concert</h3>
+                        <p class="portfolio-description">Experiência de concerto imersiva com efeitos visuais AR</p>
+                        <div class="portfolio-stats">
+                            <span><i class="fas fa-users"></i> 15,000 Participantes</span>
+                            <span><i class="fas fa-star"></i> 5.0 Avaliação</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="festival">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder festival-bg">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Digital Paradise Festival</h3>
+                        <p class="portfolio-description">Festival de música eletrônica de 3 dias com palcos interativos</p>
+                        <div class="portfolio-stats">
+                            <span><i class="fas fa-users"></i> 50,000 Participantes</span>
+                            <span><i class="fas fa-star"></i> 4.8 Avaliação</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Section -->
+    <section id="artists" class="artists">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Artistas em <span class="accent-text">Destaque</span></h2>
+                <p class="section-subtitle">Talentos de classe mundial para performances extraordinárias</p>
+            </div>
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-avatar">
+                        <div class="avatar-placeholder">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <div class="artist-status online"></div>
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Luna Synthwave</h3>
+                        <p class="artist-genre">Electronic / Synthwave</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-play"></i> 2.5M Plays</span>
+                            <span><i class="fas fa-heart"></i> 850K Fãs</span>
+                        </div>
+                        <div class="artist-tags">
+                            <span class="tag">Futurístico</span>
+                            <span class="tag">Dance</span>
+                        </div>
+                    </div>
+                    <div class="artist-actions">
+                        <button class="btn-small btn-primary">Contratar</button>
+                        <button class="btn-small btn-secondary">Preview</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-avatar">
+                        <div class="avatar-placeholder">
+                            <i class="fas fa-guitar"></i>
+                        </div>
+                        <div class="artist-status online"></div>
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Cyber Phoenix</h3>
+                        <p class="artist-genre">Rock / Cyberpunk</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-play"></i> 1.8M Plays</span>
+                            <span><i class="fas fa-heart"></i> 650K Fãs</span>
+                        </div>
+                        <div class="artist-tags">
+                            <span class="tag">Energia</span>
+                            <span class="tag">Rock</span>
+                        </div>
+                    </div>
+                    <div class="artist-actions">
+                        <button class="btn-small btn-primary">Contratar</button>
+                        <button class="btn-small btn-secondary">Preview</button>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <div class="artist-avatar">
+                        <div class="avatar-placeholder">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="artist-status offline"></div>
+                    </div>
+                    <div class="artist-info">
+                        <h3 class="artist-name">Neon Dreams</h3>
+                        <p class="artist-genre">Pop / Experimental</p>
+                        <div class="artist-stats">
+                            <span><i class="fas fa-play"></i> 3.2M Plays</span>
+                            <span><i class="fas fa-heart"></i> 1.1M Fãs</span>
+                        </div>
+                        <div class="artist-tags">
+                            <span class="tag">Vocal</span>
+                            <span class="tag">Pop</span>
+                        </div>
+                    </div>
+                    <div class="artist-actions">
+                        <button class="btn-small btn-primary">Contratar</button>
+                        <button class="btn-small btn-secondary">Preview</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos <span class="accent-text">Serviços</span></h2>
+                <p class="section-subtitle">Soluções revolucionárias para eventos da era digital</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="service-title">Produção de Eventos</h3>
+                    <p class="service-description">Experiências imersivas com tecnologia de ponta e design visual deslumbrante</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 class="service-title">Contratação de Artistas</h3>
+                    <p class="service-description">Rede global de artistas e performers premium para entretenimento inesquecível</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="service-title">Integração Tecnológica</h3>
+                    <p class="service-description">Gerenciamento de eventos com IA e experiências digitais imersivas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Entre em <span class="accent-text">Contato</span></h2>
+                <p class="section-subtitle">Pronto para criar algo extraordinário?</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Localização</h3>
+                            <p>Belo Horizonte, MG<br>Brasil</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Telefone</h3>
+                            <p>+55 31 9 8449-3467</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>contato@connecto.com</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Nome Completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" placeholder="Mensagem" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span>Enviar Mensagem</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">Con<span class="accent-text">necto</span></h3>
+                    <p>Conectando artistas e organizadores de eventos.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Connecto. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
